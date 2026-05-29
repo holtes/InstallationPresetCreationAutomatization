@@ -1,0 +1,60 @@
+/* ============================================
+   Design System Variables
+   Interactive Installations Platform
+   ============================================ */
+
+:root {
+    /* --- Background Colors --- */
+    --bg-primary: #1E1E2E;
+    --bg-secondary: #2A2A3D;
+    --bg-tertiary: #363650;
+
+    /* --- Accent Colors --- */
+    --accent: #4A9EFF;
+    --accent-hover: #6BB3FF;
+    --accent-pressed: #3A8AE6;
+
+    /* --- Status Colors --- */
+    --success: #4ADE80;
+    --warning: #FBBF24;
+    --danger: #F87171;
+
+    /* --- Text Colors --- */
+    --text-primary: #F0F0F5;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+
+    /* --- Border --- */
+    --border-color: #3F3F5C;
+
+    /* --- Spacing (8px grid) --- */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+
+    /* --- Border Radius --- */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+
+    /* --- Font Sizes --- */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 22px;
+    --font-size-2xl: 28px;
+
+    /* --- Shadows --- */
+    /* Note: USS doesn't support box-shadow natively,
+       we simulate with borders and background colors */
+
+    /* --- Animation Durations --- */
+    --transition-fast: 150ms;
+    --transition-normal: 250ms;
+    --transition-slow: 400ms;
+}

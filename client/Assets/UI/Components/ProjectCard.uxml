@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         engine="UnityEngine.UIElements">
+
+    <!-- Reusable Project Card template.
+         Cloned and populated by ProjectListScreen from C# -->
+
+    <ui:VisualElement name="project-card" class="project-card">
+        <ui:VisualElement name="project-card__preview" class="project-card__preview">
+            <ui:Label class="project-card__preview-placeholder" text="Preview" />
+        </ui:VisualElement>
+        <ui:VisualElement class="project-card__info">
+            <ui:VisualElement class="project-card__header">
+                <ui:Label name="project-card__title" text="Название проекта" class="project-card__title" />
+                <ui:Button name="project-card__menu-btn" class="btn-icon btn-ghost project-card__menu-btn" text="⋯" />
+            </ui:VisualElement>
+            <ui:VisualElement class="project-card__meta">
+                <ui:Label name="project-card__status" text="Черновик" class="badge badge-draft" />
+                <ui:Label name="project-card__date" text="—" class="project-card__date" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+
+</ui:UXML>

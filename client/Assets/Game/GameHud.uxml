@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../UI/Theme/theme.uss" />
+    <Style src="GameHud.uss" />
+
+    <ui:VisualElement name="hud-root" class="hud-root" picking-mode="Ignore">
+        <ui:VisualElement name="hud-bar" class="hud-bar">
+            <ui:Label name="hud-title" class="hud-title" text="" />
+            <ui:VisualElement name="hud-spacer" class="hud-spacer" />
+            <ui:Label name="hud-score" class="hud-score" text="0" />
+            <ui:Label name="hud-timer" class="hud-timer" text="" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+
+</ui:UXML>

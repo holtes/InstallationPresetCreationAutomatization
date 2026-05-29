@@ -1,0 +1,82 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../../Theme/theme.uss" />
+    <Style src="Steps.uss" />
+
+    <ui:VisualElement class="step-root" style="flex-direction: column; flex-grow: 1; padding: 24px; background-color: #1E1E2E;">
+
+        <ui:VisualElement class="step-grid-2col" style="flex-direction: row; flex-grow: 1;">
+
+            <!-- ===== LEFT: Assets ===== -->
+            <ui:VisualElement class="step-grid-2col__col" style="flex-direction: column; flex-grow: 1; flex-basis: 0;">
+                <ui:Label text="Ваши ассеты" class="step-h2"
+                          style="font-size: 18px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 12px;" />
+
+                <ui:VisualElement class="library-header" style="flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <ui:Label text="Кликните по ассету, потом по слоту справа" class="step-subtitle"
+                              style="font-size: 13px; color: #9CA3AF; margin-bottom: 0;" />
+                    <ui:VisualElement class="asset-filters library-filters" style="flex-direction: row; align-items: center;">
+                        <ui:Button class="library-filter-btn library-filter-btn--active" text="Все"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: #4A9EFF; border-color: #4A9EFF; color: #FFFFFF; -unity-font-style: bold; font-size: 12px;" />
+                        <ui:Button class="library-filter-btn" text="image"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: rgba(0,0,0,0); border-width: 1px; border-color: #3F3F5C; color: #9CA3AF; -unity-font-style: bold; font-size: 12px;" />
+                        <ui:Button class="library-filter-btn" text="video"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: rgba(0,0,0,0); border-width: 1px; border-color: #3F3F5C; color: #9CA3AF; -unity-font-style: bold; font-size: 12px;" />
+                        <ui:Button class="library-filter-btn" text="audio"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: rgba(0,0,0,0); border-width: 1px; border-color: #3F3F5C; color: #9CA3AF; -unity-font-style: bold; font-size: 12px;" />
+                        <ui:Button class="library-filter-btn" text="3d"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: rgba(0,0,0,0); border-width: 1px; border-color: #3F3F5C; color: #9CA3AF; -unity-font-style: bold; font-size: 12px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:ScrollView style="flex-grow: 1;">
+                    <ui:VisualElement name="mapping-assets-grid" class="mapping-asset-grid" />
+                </ui:ScrollView>
+            </ui:VisualElement>
+
+            <!-- ===== RIGHT: Slots ===== -->
+            <ui:VisualElement class="step-grid-2col__col" style="flex-direction: column; flex-grow: 1; flex-basis: 0; margin-left: 24px;">
+
+                <ui:VisualElement class="mapping-toolbar" style="flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <ui:Label text="Слоты механики" class="step-h2"
+                              style="font-size: 18px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 0;" />
+                    <!-- Auto-mapping btn — accent-tinted secondary -->
+                    <ui:Button name="auto-mapping-btn" class="btn btn-secondary auto-mapping-btn"
+                               style="flex-direction: row; align-items: center;
+                                      height: 36px; padding-left: 14px; padding-right: 14px;
+                                      background-color: rgba(74, 158, 255, 0.12);
+                                      border-width: 1px; border-color: #4A9EFF;
+                                      border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                      border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                      color: #4A9EFF; font-size: 13px; -unity-font-style: bold;">
+                        <ui:Label text="✦" picking-mode="Ignore"
+                                  style="margin-right: 6px; font-size: 14px; color: #4A9EFF;" />
+                        <ui:Label text="Авто-маппинг (AI)" picking-mode="Ignore"
+                                  style="color: #4A9EFF; font-size: 13px; -unity-font-style: bold;" />
+                    </ui:Button>
+                </ui:VisualElement>
+
+                <ui:ScrollView style="flex-grow: 1;">
+                    <ui:VisualElement name="mapping-slots-list" class="mapping-slots-list" />
+                </ui:ScrollView>
+
+                <!-- Status — карточка с цветом, который контроллер обновляет inline (text-warning/text-success). -->
+                <ui:Label name="mapping-status" class="mapping-status" text="Заполнено 0 из 0 обязательных слотов"
+                          style="background-color: #2A2A3D;
+                                 border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                 border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                 padding: 10px 12px;
+                                 font-size: 12px; color: #FBBF24;
+                                 margin-top: 8px; flex-shrink: 0;" />
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

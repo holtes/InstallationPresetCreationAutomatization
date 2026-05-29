@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         engine="UnityEngine.UIElements">
+
+    <!-- Reusable Modal template.
+         Instantiate from C# via UxmlTraits, then set title/body/buttons -->
+
+    <ui:VisualElement name="modal-overlay" class="modal-overlay">
+        <ui:VisualElement name="modal" class="modal">
+            <ui:VisualElement name="modal-header" class="modal-header">
+                <ui:Label name="modal-title" text="Заголовок" class="modal-title" />
+                <ui:Button name="modal-close-btn" class="modal-close-btn" text="✕" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="modal-body" class="modal-body">
+                <!-- Content injected via C# -->
+            </ui:VisualElement>
+
+            <ui:VisualElement name="modal-footer" class="modal-footer">
+                <ui:Button name="modal-cancel-btn" class="btn btn-secondary" text="Отмена" />
+                <ui:Button name="modal-confirm-btn" class="btn btn-primary" text="ОК" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+
+</ui:UXML>

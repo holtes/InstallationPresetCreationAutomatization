@@ -1,0 +1,75 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../Theme/theme.uss" />
+    <Style src="ProjectListScreen.uss" />
+
+    <ui:VisualElement name="projects-root" class="projects-root">
+
+        <!-- ========== TOP BAR (56px) ========== -->
+        <ui:VisualElement name="top-bar" class="top-bar">
+
+            <ui:VisualElement class="top-bar__left">
+                <ui:Label text="Interactive Installations" class="top-bar__logo" />
+                <ui:VisualElement class="search-input top-bar__search">
+                    <ui:Label text="🔍" class="search-input__icon" />
+                    <ui:TextField name="search-field" class="search-input__field" text="" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="top-bar__right">
+                <ui:VisualElement name="user-avatar" class="user-avatar">
+                    <ui:Label text="U" class="user-avatar__text" />
+                </ui:VisualElement>
+                <ui:Label name="user-name" text="user@local" class="user-pill__name" />
+                <ui:Button name="user-menu-btn" class="user-menu-btn" text="❌" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- ========== MAIN AREA ========== -->
+        <ui:VisualElement class="main-area">
+
+            <!-- Sidebar -->
+            <ui:VisualElement name="sidebar" class="sidebar">
+                <ui:Button name="nav-all" class="sidebar__item sidebar__item--active" text="Все проекты" />
+                <ui:Button name="nav-my" class="sidebar__item" text="Мои проекты" />
+                <ui:Button name="nav-recent" class="sidebar__item" text="Недавние" />
+                <ui:VisualElement class="sidebar__divider" />
+                <ui:Button name="nav-presets" class="sidebar__item" text="Пресеты" />
+                <ui:Button name="nav-settings" class="sidebar__item" text="Настройки" />
+            </ui:VisualElement>
+
+            <!-- Content -->
+            <ui:VisualElement class="content-area">
+
+                <ui:VisualElement class="content-header">
+                    <ui:Label text="Проекты" class="content-title" />
+
+                    <ui:VisualElement class="content-header__actions">
+                        <ui:VisualElement class="view-toggle">
+                            <ui:Button name="view-grid-btn" class="view-toggle__btn view-toggle__btn--active" text="▦" />
+                            <ui:Button name="view-list-btn" class="view-toggle__btn" text="≡" />
+                        </ui:VisualElement>
+                        <ui:Button name="new-project-btn" class="btn btn-primary new-project-btn" text="+  Новый проект" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:ScrollView class="projects-scroll">
+                    <ui:VisualElement name="projects-grid" class="projects-grid" />
+                    <ui:VisualElement name="projects-list" class="projects-list hidden" />
+                    <ui:VisualElement name="empty-state" class="empty-state hidden">
+                        <ui:Label text="Пока нет проектов" class="empty-state__title" />
+                        <ui:Label text="Создайте свой первый проект, чтобы начать" class="empty-state__subtitle" />
+                        <ui:Button name="empty-create-btn" class="btn btn-primary" text="Создать проект" />
+                    </ui:VisualElement>
+                </ui:ScrollView>
+
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

@@ -1,0 +1,42 @@
+.hud-root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+}
+
+.hud-bar {
+    flex-direction: row;
+    align-items: center;
+    height: 56px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: rgba(20, 20, 30, 0.8);
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.hud-title {
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: #F0F0F5;
+}
+
+.hud-spacer {
+    flex-grow: 1;
+}
+
+.hud-score {
+    font-size: 22px;
+    -unity-font-style: bold;
+    color: #4A9EFF;
+    margin-right: 24px;
+}
+
+.hud-timer {
+    font-size: 18px;
+    color: #C0C0CC;
+    min-width: 50px;
+    -unity-text-align: middle-right;
+}

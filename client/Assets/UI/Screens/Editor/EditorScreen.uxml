@@ -1,0 +1,99 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../Theme/theme.uss" />
+    <Style src="EditorScreen.uss" />
+    <Style src="Steps/Steps.uss" />
+
+    <ui:VisualElement name="editor-root" class="editor-root">
+
+        <!-- ========== TOP BAR (64px) ========== -->
+        <ui:VisualElement name="editor-top-bar" class="editor-top-bar">
+
+            <ui:VisualElement class="editor-top-bar__left">
+                <ui:Button name="breadcrumb-projects" class="editor-back-btn" text="←" />
+
+                <ui:VisualElement class="editor-breadcrumb">
+                    <ui:Label class="editor-breadcrumb__crumb" text="Проекты /" />
+                    <ui:Label name="breadcrumb-current" class="editor-breadcrumb__name" text="Мой проект" />
+                    <ui:TextField name="breadcrumb-edit" class="editor-breadcrumb__edit hidden" text="" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="editor-top-bar__right">
+                <ui:Label name="save-status-text" class="editor-save-status" text="Все изменения сохранены" />
+
+                <ui:Button name="save-btn" class="btn btn-ghost editor-action-btn">
+                    <ui:VisualElement class="editor-action-btn__icon icon-save" picking-mode="Ignore" />
+                    <ui:Label class="editor-action-btn__label" text="Сохранить" picking-mode="Ignore" />
+                </ui:Button>
+
+                <ui:Button name="preview-btn" class="btn btn-secondary editor-action-btn">
+                    <ui:VisualElement class="editor-action-btn__icon icon-play" picking-mode="Ignore" />
+                    <ui:Label class="editor-action-btn__label" text="Превью" picking-mode="Ignore" />
+                </ui:Button>
+
+                <ui:Button name="build-btn" class="btn btn-primary editor-action-btn">
+                    <ui:VisualElement class="editor-action-btn__icon icon-hammer" picking-mode="Ignore" />
+                    <ui:Label class="editor-action-btn__label" text="Собрать" picking-mode="Ignore" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Save status — отдельный элемент (для индикации saving), оставляем для совместимости. -->
+        <ui:VisualElement name="save-status" class="hidden" />
+
+        <!-- ========== STEPPER ========== -->
+        <ui:VisualElement name="stepper" class="editor-stepper">
+            <ui:VisualElement name="step-1" class="stepper__step">
+                <ui:Label name="step-1-circle" class="stepper__circle stepper__circle--active" text="1" />
+                <ui:Label class="stepper__label stepper__label--active" text="Ассеты" />
+            </ui:VisualElement>
+            <ui:VisualElement class="stepper__connector" />
+
+            <ui:VisualElement name="step-2" class="stepper__step">
+                <ui:Label name="step-2-circle" class="stepper__circle" text="2" />
+                <ui:Label class="stepper__label" text="Пресет" />
+            </ui:VisualElement>
+            <ui:VisualElement class="stepper__connector" />
+
+            <ui:VisualElement name="step-3" class="stepper__step">
+                <ui:Label name="step-3-circle" class="stepper__circle" text="3" />
+                <ui:Label class="stepper__label" text="Маппинг" />
+            </ui:VisualElement>
+            <ui:VisualElement class="stepper__connector" />
+
+            <ui:VisualElement name="step-4" class="stepper__step">
+                <ui:Label name="step-4-circle" class="stepper__circle" text="4" />
+                <ui:Label class="stepper__label" text="Параметры" />
+            </ui:VisualElement>
+            <ui:VisualElement class="stepper__connector" />
+
+            <ui:VisualElement name="step-5" class="stepper__step">
+                <ui:Label name="step-5-circle" class="stepper__circle" text="5" />
+                <ui:Label class="stepper__label" text="Превью" />
+            </ui:VisualElement>
+            <ui:VisualElement class="stepper__connector" />
+
+            <ui:VisualElement name="step-6" class="stepper__step">
+                <ui:Label name="step-6-circle" class="stepper__circle" text="6" />
+                <ui:Label class="stepper__label" text="Публикация" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- ========== STEP CONTENT ========== -->
+        <ui:VisualElement name="step-content" class="step-content" />
+
+        <!-- ========== BOTTOM NAV ========== -->
+        <ui:VisualElement name="step-nav" class="editor-step-nav">
+            <ui:Button name="prev-step-btn" class="btn btn-ghost" text="← Назад" />
+            <ui:VisualElement class="flex-grow" />
+            <ui:Button name="next-step-btn" class="btn btn-primary" text="Далее →" />
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

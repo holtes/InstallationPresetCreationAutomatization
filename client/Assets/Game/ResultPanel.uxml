@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../UI/Theme/theme.uss" />
+    <Style src="ResultPanel.uss" />
+
+    <ui:VisualElement name="result-root" class="result-root">
+        <ui:VisualElement name="result-card" class="result-card">
+            <ui:Label name="result-title" class="result-title" text="Готово" />
+            <ui:Label name="result-score" class="result-score" text="0" />
+            <ui:Label name="result-summary" class="result-summary" text="" />
+            <ui:VisualElement name="result-actions" class="result-actions">
+                <ui:Button name="btn-replay" class="btn-primary" text="Сыграть ещё раз" />
+                <ui:Button name="btn-exit" class="btn-secondary" text="Выйти" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+
+</ui:UXML>

@@ -1,0 +1,52 @@
+.result-root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.result-card {
+    width: 480px;
+    padding: 32px;
+    background-color: #2A2A3A;
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.08);
+    align-items: center;
+}
+
+.result-title {
+    font-size: 22px;
+    -unity-font-style: bold;
+    color: #F0F0F5;
+    margin-bottom: 8px;
+}
+
+.result-score {
+    font-size: 56px;
+    -unity-font-style: bold;
+    color: #4A9EFF;
+    margin-bottom: 8px;
+}
+
+.result-summary {
+    font-size: 14px;
+    color: #C0C0CC;
+    margin-bottom: 24px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.result-actions {
+    flex-direction: row;
+}
+
+.result-actions Button {
+    margin-left: 6px;
+    margin-right: 6px;
+    min-width: 160px;
+}

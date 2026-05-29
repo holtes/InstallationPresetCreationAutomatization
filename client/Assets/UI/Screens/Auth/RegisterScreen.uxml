@@ -1,0 +1,64 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../Theme/theme.uss" />
+    <Style src="AuthScreen.uss" />
+
+    <ui:VisualElement name="register-root" class="auth-root">
+
+        <ui:ScrollView class="auth-scroll" mode="Vertical">
+
+                <ui:VisualElement name="register-card" class="login-card register-card">
+
+                    <ui:Label text="Создать аккаунт" class="login-logo register-logo" />
+                    <ui:Label text="Заполните данные, чтобы начать" class="register-subtitle" />
+
+                    <ui:VisualElement class="login-field-group">
+                        <ui:Label text="Имя" class="field-label" />
+                        <ui:TextField name="name-field" class="field" text="" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="login-field-group">
+                        <ui:Label text="Email" class="field-label" />
+                        <ui:TextField name="email-field" class="field" text="" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="login-field-group">
+                        <ui:Label text="Пароль (минимум 6 символов)" class="field-label" />
+                        <ui:VisualElement class="login-password-wrap">
+                            <ui:TextField name="password-field" password="true" class="field login-password-field" text="" />
+                            <ui:Button name="toggle-password-btn" class="login-eye-btn">
+                                <ui:VisualElement class="login-eye-btn__icon icon-eye" picking-mode="Ignore" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="login-field-group">
+                        <ui:Label text="Повторите пароль" class="field-label" />
+                        <ui:TextField name="password-confirm-field" password="true" class="field" text="" />
+                    </ui:VisualElement>
+
+                    <ui:Label name="error-label" class="login-error hidden" text="" />
+
+                    <ui:Button name="register-btn" class="btn btn-primary btn-large btn-full-width login-btn" text="Создать аккаунт" />
+
+                    <ui:VisualElement class="login-register-row">
+                        <ui:Label text="Уже есть аккаунт?" class="login-register-text" />
+                        <ui:Button name="go-login-btn" class="login-register-link" text="Войти" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement name="register-spinner" class="login-spinner hidden">
+                        <ui:VisualElement class="spinner" />
+                        <ui:Label text="Создание аккаунта..." class="login-spinner-text" />
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+
+        </ui:ScrollView>
+
+    </ui:VisualElement>
+
+</ui:UXML>

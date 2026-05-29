@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../../Theme/theme.uss" />
+    <Style src="Steps.uss" />
+
+    <ui:VisualElement class="step-root" style="flex-direction: column; flex-grow: 1; padding: 24px; background-color: #1E1E2E;">
+        <ui:Label text="Настройка параметров" class="step-h2"
+                  style="font-size: 18px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 12px;" />
+        <ui:Label text="Параметры определяют поведение и внешний вид механики. Превью пресета доступно на следующем шаге."
+                  class="step-subtitle"
+                  style="font-size: 13px; color: #9CA3AF; margin-bottom: 16px;" />
+
+        <ui:ScrollView name="params-scroll" style="flex-grow: 1;">
+            <!-- Наполняется динамически из Step4ParametersController.
+                 width:100% — обязательно: ScrollView.contentContainer использует
+                 align-items:flex-start, и без явной ширины контейнер сжимается до
+                 ширины самого узкого ребёнка. -->
+            <ui:VisualElement name="params-container" class="params-list"
+                              style="flex-direction: column; width: 100%;" />
+        </ui:ScrollView>
+    </ui:VisualElement>
+
+</ui:UXML>

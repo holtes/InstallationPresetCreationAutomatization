@@ -1,0 +1,159 @@
+/* Auth + Register screens */
+
+.auth-root {
+    flex-grow: 1;
+    background-color: #12121F;
+}
+
+/* ScrollView wrapper — позволяет крутить, если карточка выше viewport-а.
+   ВАЖНО: чтобы карточка центрировалась по вертикали, content-container ScrollView
+   должен иметь min-height = 100% (иначе высота равна высоте контента и flex-центрирование
+   делает выравнивание относительно высоты карточки, а не viewport). */
+.auth-scroll {
+    flex-grow: 1;
+}
+.auth-scroll .unity-scroll-view__content-viewport {
+    flex-grow: 1;
+}
+.auth-scroll .unity-scroll-view__content-container {
+    min-height: 100%;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+/* Login card */
+.login-card {
+    width: 400px;
+    background-color: #2A2A3D;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    padding: 32px;
+    align-items: stretch;
+    flex-shrink: 0;
+}
+
+.login-logo {
+    font-size: 22px;
+    -unity-font-style: bold;
+    color: #4A9EFF;
+    -unity-text-align: middle-center;
+    margin-bottom: 24px;
+}
+
+/* Register-карточка: компактнее по вертикали (4 поля вместо 2). */
+.register-card {
+    padding: 28px;
+}
+.register-logo {
+    margin-bottom: 4px;
+}
+.register-subtitle {
+    font-size: 13px;
+    color: #9CA3AF;
+    -unity-text-align: middle-center;
+    margin-bottom: 18px;
+}
+
+.login-field-group {
+    margin-bottom: 12px;
+}
+
+/* Password row: input grows, eye button on the right. */
+.login-password-wrap {
+    flex-direction: row;
+    align-items: center;
+}
+.login-password-field {
+    flex-grow: 1;
+}
+
+.login-eye-btn {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    margin-left: 8px;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 1px;
+    border-color: #3F3F5C;
+    border-radius: 6px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    transition-property: border-color;
+    transition-duration: 150ms;
+}
+.login-eye-btn:hover {
+    border-color: #4A9EFF;
+}
+
+/* Иконка-глаз внутри кнопки. Размер 20×20, цвет = text-secondary, на ховере подсвечивается. */
+.login-eye-btn__icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    -unity-background-image-tint-color: #9CA3AF;
+    transition-property: -unity-background-image-tint-color;
+    transition-duration: 150ms;
+}
+.login-eye-btn:hover > .login-eye-btn__icon {
+    -unity-background-image-tint-color: #4A9EFF;
+}
+
+.login-error {
+    font-size: 12px;
+    color: #F87171;
+    -unity-text-align: middle-center;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.login-btn {
+    margin-top: 8px;
+}
+
+.login-register-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+}
+.login-register-text {
+    font-size: 13px;
+    color: #9CA3AF;
+}
+.login-register-link {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    color: #4A9EFF;
+    font-size: 13px;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    margin: 0;
+    margin-left: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    height: auto;
+    transition-property: color;
+    transition-duration: 150ms;
+}
+.login-register-link:hover { color: #6BB3FF; }
+
+.login-spinner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+.login-spinner-text {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-left: 8px;
+}

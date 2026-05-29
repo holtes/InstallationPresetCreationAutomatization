@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         engine="UnityEngine.UIElements">
+
+    <!-- Reusable Slot item for the mapping editor.
+         MappingEditor clones this per SlotDefinition -->
+
+    <ui:VisualElement name="slot-item" class="slot-item">
+        <ui:VisualElement class="slot-item__header">
+            <ui:Label name="slot-item__name" class="slot-item__name" text="Slot name" />
+            <ui:Label name="slot-item__type" class="badge badge-tag slot-item__type" text="type" />
+        </ui:VisualElement>
+
+        <!-- Empty drop zone (shown when not filled) -->
+        <ui:VisualElement name="slot-item__drop-zone" class="slot-item__drop-zone">
+            <ui:Label class="slot-item__placeholder" text="Перетащите ассет сюда" />
+        </ui:VisualElement>
+
+        <!-- Filled content (hidden by default, toggled by C#) -->
+        <ui:VisualElement name="slot-item__filled-content" class="slot-item__filled-content hidden">
+            <ui:VisualElement name="slot-item__filled-preview" class="slot-item__filled-preview" />
+            <ui:Label name="slot-item__filled-name" class="slot-item__filled-name" text="asset.ext" />
+            <ui:Button name="slot-item__remove-btn" class="btn-icon btn-ghost slot-item__remove-btn" text="✕" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+
+</ui:UXML>

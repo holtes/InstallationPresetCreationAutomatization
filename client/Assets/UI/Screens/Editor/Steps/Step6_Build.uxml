@@ -1,0 +1,338 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../../Theme/theme.uss" />
+    <Style src="Steps.uss" />
+
+    <!-- Все ключевые стили inline — на случай если Unity не подхватит USS из кэша.
+         Кнопки build-type активный стиль выставляется ИНЛАЙН в Step6BuildController.SelectType(). -->
+
+    <ui:VisualElement class="step-root"
+                      style="flex-direction: column; flex-grow: 1; padding: 24px; background-color: #1E1E2E;">
+
+        <ui:VisualElement class="build-state"
+                          style="flex-direction: column; flex-grow: 1; align-items: center;">
+            <ui:VisualElement class="build-state__inner"
+                              style="flex-direction: column; width: 640px; max-width: 100%;">
+
+                <!-- ========== STATE: Pre-build ========== -->
+                <ui:VisualElement name="build-pre" class="build-card"
+                                  style="background-color: #2A2A3D;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         border-width: 1px; border-color: #3F3F5C;
+                                         padding: 24px; margin-bottom: 16px;">
+                    <ui:Label text="Сборка и публикация"
+                              style="font-size: 22px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 4px;" />
+                    <ui:Label text="Проверьте конфигурацию и запустите сборку WebGL-билда"
+                              style="font-size: 13px; color: #9CA3AF; margin-bottom: 18px;" />
+
+                    <!-- Project Summary -->
+                    <ui:VisualElement style="background-color: #363650;
+                                             border-top-left-radius: 8px; border-top-right-radius: 8px;
+                                             border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                                             padding: 14px 18px; margin-bottom: 18px;">
+                        <ui:Label text="Сводка проекта"
+                                  style="font-size: 14px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 10px;" />
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; padding-top: 4px; padding-bottom: 4px;">
+                            <ui:Label text="Пресет"
+                                      style="font-size: 13px; color: #9CA3AF;" />
+                            <ui:Label name="build-preset-name" text="—"
+                                      style="font-size: 13px; color: #F0F0F5;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; padding-top: 4px; padding-bottom: 4px;">
+                            <ui:Label text="Ассеты"
+                                      style="font-size: 13px; color: #9CA3AF;" />
+                            <ui:Label name="build-asset-count" text="—"
+                                      style="font-size: 13px; color: #F0F0F5;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; padding-top: 4px; padding-bottom: 4px;">
+                            <ui:Label text="Аппаратный профиль"
+                                      style="font-size: 13px; color: #9CA3AF;" />
+                            <ui:Label name="build-hw-profile" text="не указан"
+                                      style="font-size: 13px; color: #F0F0F5;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- Build Type -->
+                    <ui:Label text="Тип билда"
+                              style="font-size: 13px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 8px;" />
+                    <ui:VisualElement style="flex-direction: column; margin-bottom: 18px;">
+                        <ui:Button name="build-type-light" class="build-type-btn"
+                                   text="🪶  Лёгкий — минимальный размер, базовые эффекты"
+                                   style="background-color: #2A2A3D; border-width: 2px; border-color: #3F3F5C;
+                                          border-top-left-radius: 8px; border-top-right-radius: 8px;
+                                          border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                                          padding: 14px 16px; margin: 0 0 8px 0;
+                                          -unity-text-align: middle-left;
+                                          color: #F0F0F5; font-size: 13px; -unity-font-style: normal;" />
+                        <ui:Button name="build-type-standard" class="build-type-btn build-type-btn--active"
+                                   text="⚙  Стандартный — баланс качества и размера"
+                                   style="background-color: rgba(74, 158, 255, 0.15);
+                                          border-width: 2px; border-color: #4A9EFF;
+                                          border-top-left-radius: 8px; border-top-right-radius: 8px;
+                                          border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                                          padding: 14px 16px; margin: 0 0 8px 0;
+                                          -unity-text-align: middle-left;
+                                          color: #FFFFFF; font-size: 13px; -unity-font-style: bold;" />
+                        <ui:Button name="build-type-full" class="build-type-btn"
+                                   text="💎  Полный — максимальное качество"
+                                   style="background-color: #2A2A3D; border-width: 2px; border-color: #3F3F5C;
+                                          border-top-left-radius: 8px; border-top-right-radius: 8px;
+                                          border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                                          padding: 14px 16px; margin: 0;
+                                          -unity-text-align: middle-left;
+                                          color: #F0F0F5; font-size: 13px; -unity-font-style: normal;" />
+                    </ui:VisualElement>
+
+                    <!-- Launch button -->
+                    <ui:Button name="start-build-btn" class="btn btn-primary"
+                               text="🔨  Запустить сборку"
+                               style="height: 48px; font-size: 15px; -unity-font-style: bold;
+                                      background-color: #4A9EFF; border-width: 0;
+                                      border-top-left-radius: 8px; border-top-right-radius: 8px;
+                                      border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                                      color: #FFFFFF; margin: 0;" />
+                </ui:VisualElement>
+
+                <!-- ========== STATE: Building ========== -->
+                <ui:VisualElement name="build-progress" class="build-card hidden"
+                                  style="background-color: #2A2A3D;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         border-width: 1px; border-color: #3F3F5C;
+                                         padding: 24px; margin-bottom: 16px;">
+                    <ui:Label text="Сборка выполняется…"
+                              style="font-size: 22px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 4px;" />
+
+                    <ui:Label name="build-stage" text="Старт…"
+                              style="font-size: 13px; color: #4A9EFF; margin-bottom: 8px;" />
+
+                    <ui:VisualElement style="height: 8px; background-color: #363650;
+                                             border-top-left-radius: 4px; border-top-right-radius: 4px;
+                                             border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;
+                                             overflow: hidden; margin-top: 4px; margin-bottom: 8px;">
+                        <ui:VisualElement name="build-progress-fill"
+                                          style="height: 100%; width: 0%;
+                                                 background-color: #4A9EFF;
+                                                 border-top-left-radius: 4px; border-top-right-radius: 4px;
+                                                 border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;" />
+                    </ui:VisualElement>
+
+                    <ui:Label name="build-percent" text="0%"
+                              style="font-size: 13px; color: #9CA3AF; margin-bottom: 16px;" />
+
+                    <ui:Label text="Лог сборки"
+                              style="font-size: 13px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 4px;" />
+                    <ui:ScrollView style="max-height: 220px;
+                                          background-color: #1E1E2E;
+                                          border-width: 1px; border-color: #3F3F5C;
+                                          border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                          border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                          margin-bottom: 14px; flex-grow: 1;">
+                        <ui:Label name="build-log" text="[Ожидание начала сборки...]"
+                                  style="padding: 12px; color: #9CA3AF; font-size: 11px; white-space: normal;" />
+                    </ui:ScrollView>
+
+                    <ui:Button name="cancel-build-btn"
+                               text="Отменить"
+                               style="height: 36px; padding-left: 16px; padding-right: 16px;
+                                      background-color: rgba(0,0,0,0); border-width: 0;
+                                      border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                      border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                      color: #9CA3AF; font-size: 13px;
+                                      align-self: flex-start; margin: 0;" />
+                </ui:VisualElement>
+
+                <!-- ========== STATE: Success ========== -->
+                <ui:VisualElement name="build-success" class="build-card hidden"
+                                  style="align-items: center;
+                                         background-color: #2A2A3D;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         border-width: 1px; border-color: #3F3F5C;
+                                         padding: 28px; margin-bottom: 16px;">
+                    <ui:Label text="✓"
+                              style="width: 80px; height: 80px;
+                                     border-top-left-radius: 40px; border-top-right-radius: 40px;
+                                     border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
+                                     background-color: rgba(74, 222, 128, 0.2);
+                                     -unity-text-align: middle-center;
+                                     font-size: 48px; color: #4ADE80; margin-bottom: 16px;" />
+                    <ui:Label text="Сборка завершена!"
+                              style="font-size: 22px; -unity-font-style: bold; color: #F0F0F5;
+                                     -unity-text-align: middle-center; margin-bottom: 6px;" />
+                    <ui:Label text="Ваш проект готов к публикации"
+                              style="font-size: 13px; color: #9CA3AF;
+                                     -unity-text-align: middle-center; margin-bottom: 22px;" />
+
+                    <!-- URL -->
+                    <ui:VisualElement style="width: 100%;">
+                        <ui:Label text="URL билда"
+                                  style="font-size: 13px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 4px;" />
+                        <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 12px;">
+                            <ui:TextField name="build-url" text=""
+                                          style="flex-grow: 1; height: 34px;
+                                                 background-color: #1E1E2E;
+                                                 border-width: 1px; border-color: #3F3F5C;
+                                                 border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                                 border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                                 color: #F0F0F5; font-size: 12px;" />
+                            <ui:Button name="copy-url-btn"
+                                       text="Копировать"
+                                       style="margin-left: 8px; height: 34px; padding-left: 14px; padding-right: 14px;
+                                              background-color: rgba(0,0,0,0);
+                                              border-width: 1px; border-color: #4A9EFF;
+                                              border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                              border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                              color: #4A9EFF; font-size: 12px; -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- iframe code -->
+                    <ui:VisualElement style="width: 100%;">
+                        <ui:Label text="iframe-код для встраивания"
+                                  style="font-size: 13px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 4px;" />
+                        <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 16px;">
+                            <ui:TextField name="build-iframe" text=""
+                                          style="flex-grow: 1; height: 34px;
+                                                 background-color: #1E1E2E;
+                                                 border-width: 1px; border-color: #3F3F5C;
+                                                 border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                                 border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                                 color: #F0F0F5; font-size: 12px;" />
+                            <ui:Button name="copy-iframe-btn"
+                                       text="Копировать"
+                                       style="margin-left: 8px; height: 34px; padding-left: 14px; padding-right: 14px;
+                                              background-color: rgba(0,0,0,0);
+                                              border-width: 1px; border-color: #4A9EFF;
+                                              border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                              border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                              color: #4A9EFF; font-size: 12px; -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- QR -->
+                    <ui:VisualElement name="qr-code"
+                                      style="width: 110px; height: 110px;
+                                             background-color: #1E1E2E; border-width: 1px; border-color: #3F3F5C;
+                                             border-top-left-radius: 8px; border-top-right-radius: 8px;
+                                             border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                                             align-items: center; justify-content: center;
+                                             align-self: center; margin-bottom: 16px;">
+                        <ui:Label text="QR" style="font-size: 22px; color: #6B7280; -unity-text-align: middle-center;" />
+                    </ui:VisualElement>
+
+                    <!-- Build Report -->
+                    <ui:VisualElement style="width: 100%;">
+                        <ui:Label text="Отчёт о сборке"
+                                  style="font-size: 12px; color: #6B7280; margin-bottom: 8px;" />
+                        <ui:VisualElement style="flex-direction: row; flex-wrap: wrap;">
+                            <ui:VisualElement style="flex-grow: 1; min-width: 100px;
+                                                     padding: 10px; margin: 4px;
+                                                     background-color: #363650;
+                                                     border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                                     border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                                     align-items: center;">
+                                <ui:Label text="Размер" style="font-size: 11px; color: #6B7280; margin-bottom: 4px; -unity-text-align: middle-center;" />
+                                <ui:Label name="report-size" text="—" style="font-size: 16px; color: #F0F0F5; -unity-font-style: bold; -unity-text-align: middle-center;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; min-width: 100px;
+                                                     padding: 10px; margin: 4px;
+                                                     background-color: #363650;
+                                                     border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                                     border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                                     align-items: center;">
+                                <ui:Label text="Время сборки" style="font-size: 11px; color: #6B7280; margin-bottom: 4px; -unity-text-align: middle-center;" />
+                                <ui:Label name="report-time" text="—" style="font-size: 16px; color: #F0F0F5; -unity-font-style: bold; -unity-text-align: middle-center;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; min-width: 100px;
+                                                     padding: 10px; margin: 4px;
+                                                     background-color: #363650;
+                                                     border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                                     border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                                     align-items: center;">
+                                <ui:Label text="Ожид. FPS" style="font-size: 11px; color: #6B7280; margin-bottom: 4px; -unity-text-align: middle-center;" />
+                                <ui:Label name="report-fps" text="—" style="font-size: 16px; color: #F0F0F5; -unity-font-style: bold; -unity-text-align: middle-center;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- Action buttons -->
+                    <ui:VisualElement style="flex-direction: row; justify-content: center; flex-wrap: wrap; margin-top: 14px;">
+                        <ui:Button name="open-browser-btn" text="↗  Открыть в браузере"
+                                   style="margin: 4px; height: 40px; padding-left: 18px; padding-right: 18px;
+                                          background-color: #4A9EFF; border-width: 0;
+                                          border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                          border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                          color: #FFFFFF; font-size: 13px; -unity-font-style: bold;" />
+                        <ui:Button name="download-btn" text="↓  Скачать билд"
+                                   style="margin: 4px; height: 40px; padding-left: 18px; padding-right: 18px;
+                                          background-color: rgba(0,0,0,0);
+                                          border-width: 1px; border-color: #4A9EFF;
+                                          border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                          border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                          color: #4A9EFF; font-size: 13px; -unity-font-style: bold;" />
+                        <ui:Button name="new-project-btn" text="+ Новый проект"
+                                   style="margin: 4px; height: 40px; padding-left: 18px; padding-right: 18px;
+                                          background-color: rgba(0,0,0,0); border-width: 0;
+                                          color: #9CA3AF; font-size: 13px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- ========== STATE: Error ========== -->
+                <ui:VisualElement name="build-error" class="build-card hidden"
+                                  style="align-items: center;
+                                         background-color: #2A2A3D;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         border-width: 1px; border-color: #3F3F5C;
+                                         padding: 28px; margin-bottom: 16px;">
+                    <ui:Label text="✕"
+                              style="width: 80px; height: 80px;
+                                     border-top-left-radius: 40px; border-top-right-radius: 40px;
+                                     border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
+                                     background-color: rgba(248, 113, 113, 0.2);
+                                     -unity-text-align: middle-center;
+                                     font-size: 48px; color: #F87171; margin-bottom: 16px;" />
+                    <ui:Label text="Ошибка сборки"
+                              style="font-size: 22px; -unity-font-style: bold; color: #F0F0F5;
+                                     -unity-text-align: middle-center; margin-bottom: 6px;" />
+                    <ui:Label name="build-error-message" text=""
+                              style="background-color: rgba(248, 113, 113, 0.1);
+                                     border-width: 1px; border-color: #F87171;
+                                     border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                     border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                     padding: 12px; color: #F87171; font-size: 12px;
+                                     margin-bottom: 16px; width: 100%; white-space: normal;" />
+
+                    <ui:Label text="Детали ошибки"
+                              style="font-size: 13px; -unity-font-style: bold; color: #F0F0F5;
+                                     margin-bottom: 4px; align-self: flex-start;" />
+                    <ui:ScrollView style="width: 100%; max-height: 200px;
+                                          background-color: #1E1E2E;
+                                          border-width: 1px; border-color: #3F3F5C;
+                                          border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                          border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                          margin-bottom: 14px;">
+                        <ui:Label name="build-error-log" text=""
+                                  style="padding: 12px; color: #9CA3AF; font-size: 11px; white-space: normal;" />
+                    </ui:ScrollView>
+
+                    <ui:Button name="retry-build-btn"
+                               text="🔄  Повторить сборку"
+                               style="margin-top: 4px; height: 44px; padding-left: 24px; padding-right: 24px;
+                                      background-color: #4A9EFF; border-width: 0;
+                                      border-top-left-radius: 8px; border-top-right-radius: 8px;
+                                      border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                                      color: #FFFFFF; font-size: 14px; -unity-font-style: bold;" />
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+
+</ui:UXML>

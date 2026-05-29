@@ -1,0 +1,39 @@
+# Web framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+
+# Database
+sqlalchemy==2.0.36
+alembic==1.14.1
+asyncpg==0.30.0
+psycopg2-binary==2.9.10
+
+# Auth
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+bcrypt==4.2.1
+
+# Task queue
+celery[redis]==5.4.0
+redis==5.2.1
+
+# LLM integration (Google Gemini — free tier: 15 RPM, 1M tokens/day)
+google-genai
+google-generativeai==0.8.5
+httpx==0.28.1
+
+# Asset analysis
+Pillow==11.1.0
+python-magic==0.4.27
+pygltflib==1.16.4
+
+# Validation & utils
+pydantic==2.10.4
+pydantic[email]
+pydantic-settings==2.7.1
+python-dotenv==1.0.1
+aiofiles==24.1.0
+
+# Logging
+structlog==24.4.0

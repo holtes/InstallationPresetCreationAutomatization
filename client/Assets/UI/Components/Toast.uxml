@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         engine="UnityEngine.UIElements">
+
+    <!-- Reusable Toast notification template.
+         Add class toast-success / toast-error / toast-warning / toast-info -->
+
+    <ui:VisualElement name="toast" class="toast toast-info">
+        <ui:VisualElement name="toast-icon" class="toast-icon" />
+        <ui:Label name="toast-message" class="toast-message" text="Уведомление" />
+        <ui:Button name="toast-close-btn" class="btn-icon btn-ghost" text="✕" />
+    </ui:VisualElement>
+
+</ui:UXML>

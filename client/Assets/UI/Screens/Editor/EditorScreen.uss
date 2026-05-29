@@ -1,0 +1,190 @@
+/* Editor Screen — wrapper, top bar, stepper, bottom nav */
+
+.editor-root {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    flex-direction: column;
+    background-color: #1E1E2E;
+}
+
+/* ============================================
+   TOP BAR — h-16 (64px)
+   ============================================ */
+.editor-top-bar {
+    height: 64px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: #2A2A3D;
+    border-bottom-width: 1px;
+    border-bottom-color: #3F3F5C;
+    flex-shrink: 0;
+}
+.editor-top-bar__left {
+    flex-direction: row;
+    align-items: center;
+}
+.editor-top-bar__right {
+    flex-direction: row;
+    align-items: center;
+}
+
+.editor-back-btn {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    border-radius: 8px;
+    color: #9CA3AF;
+    font-size: 20px;
+    -unity-text-align: middle-center;
+    margin: 0;
+    margin-right: 12px;
+    padding: 0;
+    transition-property: background-color, color;
+    transition-duration: 150ms;
+}
+.editor-back-btn:hover { background-color: #363650; color: #F0F0F5; }
+
+/* Breadcrumb «Проекты / Имя проекта» */
+.editor-breadcrumb {
+    flex-direction: row;
+    align-items: center;
+}
+.editor-breadcrumb__crumb {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-right: 6px;
+}
+.editor-breadcrumb__name {
+    font-size: 14px;
+    color: #F0F0F5;
+    -unity-font-style: bold;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 4px;
+    transition-property: color, background-color;
+    transition-duration: 150ms;
+}
+.editor-breadcrumb__name:hover {
+    color: #4A9EFF;
+    background-color: #363650;
+}
+.editor-breadcrumb__edit {
+    margin: 0;
+    height: 28px;
+    min-width: 200px;
+}
+.editor-breadcrumb__edit > .unity-text-field__input,
+.editor-breadcrumb__edit > .unity-base-text-field__input {
+    background-color: #1E1E2E;
+    border-width: 1px;
+    border-color: #4A9EFF;
+    border-radius: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #F0F0F5;
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+/* Save status text */
+.editor-save-status {
+    font-size: 11px;
+    color: #6B7280;
+    margin-right: 16px;
+}
+
+/* Action buttons (Save / Preview / Build) с иконкой + лейблом */
+.editor-action-btn {
+    flex-direction: row;
+    align-items: center;
+    height: 36px;
+    margin-left: 8px;
+    padding-left: 12px;
+    padding-right: 14px;
+}
+.editor-action-btn__icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    -unity-background-image-tint-color: #F0F0F5;
+}
+.editor-action-btn__label {
+    font-size: 14px;
+    color: #F0F0F5;
+    -unity-font-style: normal;
+}
+
+/* ============================================
+   ICON HOOKS — empty background-image; пользователь может
+   подложить PNG в Assets/Resources/Icons/<name>.png и они появятся.
+   Имена соответствуют lucide-react.
+   ============================================ */
+.icon-save     { background-image: resource("Icons/save"); }
+.icon-play     { background-image: resource("Icons/play"); }
+.icon-hammer   { background-image: resource("Icons/hammer"); }
+.icon-upload   { background-image: resource("Icons/upload"); }
+.icon-x        { background-image: resource("Icons/x"); }
+.icon-image    { background-image: resource("Icons/image"); }
+.icon-video    { background-image: resource("Icons/video"); }
+.icon-music    { background-image: resource("Icons/music"); }
+.icon-box      { background-image: resource("Icons/box"); }
+.icon-text     { background-image: resource("Icons/file-text"); }
+.icon-puzzle   { background-image: resource("Icons/puzzle"); }
+.icon-help     { background-image: resource("Icons/help-circle"); }
+.icon-brain    { background-image: resource("Icons/brain"); }
+.icon-clock    { background-image: resource("Icons/clock"); }
+.icon-sparkles { background-image: resource("Icons/sparkles"); }
+.icon-rotate   { background-image: resource("Icons/rotate-ccw"); }
+.icon-monitor  { background-image: resource("Icons/monitor"); }
+.icon-maximize { background-image: resource("Icons/maximize"); }
+.icon-check    { background-image: resource("Icons/check"); }
+.icon-copy     { background-image: resource("Icons/copy"); }
+.icon-external { background-image: resource("Icons/external-link"); }
+.icon-download { background-image: resource("Icons/download"); }
+.icon-qr       { background-image: resource("Icons/qr-code"); }
+
+/* ============================================
+   STEPPER — bg-secondary band под top bar
+   ============================================ */
+.editor-stepper {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+    background-color: #2A2A3D;
+    border-bottom-width: 1px;
+    border-bottom-color: #3F3F5C;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   STEP CONTENT — растягивается, скроллится внутри шага
+   ============================================ */
+.step-content {
+    flex-grow: 1;
+    overflow: hidden;
+    background-color: #1E1E2E;
+}
+
+/* ============================================
+   BOTTOM NAV
+   ============================================ */
+.editor-step-nav {
+    height: 64px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 32px;
+    padding-right: 32px;
+    background-color: #2A2A3D;
+    border-top-width: 1px;
+    border-top-color: #3F3F5C;
+    flex-shrink: 0;
+}

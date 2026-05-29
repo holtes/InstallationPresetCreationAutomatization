@@ -1,0 +1,77 @@
+services:
+  # ---- PostgreSQL ----
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: installations_platform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ---- Redis ----
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ---- API Server ----
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/installations_platform
+      DATABASE_URL_SYNC: postgresql+psycopg2://postgres:postgres@postgres:5432/installations_platform
+      REDIS_URL: redis://redis:6379/0
+      ASSETS_DIR: /app/storage/assets
+      BUILDS_DIR: /app/storage/builds
+    volumes:
+      - assets_data:/app/storage/assets
+      - builds_data:/app/storage/builds
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+  # ---- Celery Worker (builds) ----
+  worker:
+    build: .
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/installations_platform
+      DATABASE_URL_SYNC: postgresql+psycopg2://postgres:postgres@postgres:5432/installations_platform
+      REDIS_URL: redis://redis:6379/0
+      ASSETS_DIR: /app/storage/assets
+      BUILDS_DIR: /app/storage/builds
+    volumes:
+      - assets_data:/app/storage/assets
+      - builds_data:/app/storage/builds
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: celery -A app.tasks.celery_app:celery_app worker --loglevel=info --concurrency=2
+
+volumes:
+  pgdata:
+  assets_data:
+  builds_data:

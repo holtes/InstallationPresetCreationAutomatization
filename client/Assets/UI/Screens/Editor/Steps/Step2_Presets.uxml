@@ -1,0 +1,295 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../../Theme/theme.uss" />
+    <Style src="Steps.uss" />
+
+    <!-- ВНИМАНИЕ: все inline-стили здесь продублированы из Steps.uss
+         (классы .preset-card, .preset-card__*). Unity 2022 не всегда подхватывает
+         изменения в USS до перезапуска редактора, поэтому стили дублированы
+         inline для гарантированной отрисовки. Если хочешь поменять цвета/радиусы —
+         делай это И тут, И в Steps.uss. -->
+
+    <ui:VisualElement class="step-root" style="flex-direction: column; flex-grow: 1; padding: 24px; background-color: #1E1E2E;">
+
+        <ui:Label text="Выберите пресет игровой механики"
+                  class="step-title"
+                  style="font-size: 22px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 4px;" />
+        <ui:Label text="Пресеты — готовые игровые механики. Кнопка «Выбрать» активна только если загружены нужные ассеты."
+                  class="step-subtitle"
+                  style="font-size: 13px; color: #9CA3AF; margin-bottom: 16px;" />
+
+        <ui:ScrollView style="flex-grow: 1;">
+
+            <!-- Сетка карточек: 3 в ряд (32% ширины), wrap. width:100% обязательно — иначе
+                 ScrollView.contentContainer не даёт ширину для % потомков. -->
+            <ui:VisualElement class="preset-grid"
+                              style="flex-direction: row; flex-wrap: wrap; width: 100%; margin-bottom: 16px;">
+
+                <!-- ===== 1. ПАЗЛ ===== -->
+                <ui:VisualElement name="preset-puzzle" class="preset-card"
+                                  style="flex-direction: column; flex-grow: 1; flex-shrink: 1; flex-basis: 0;
+                                         width: 32%; max-width: 49%; min-width: 240px;
+                                         margin: 6px;
+                                         background-color: #2A2A3D;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         border-width: 2px; border-color: #3F3F5C;
+                                         padding: 24px;
+                                         align-items: center;">
+                    <ui:VisualElement class="preset-card__icon-wrap"
+                                      style="width: 72px; height: 72px;
+                                             align-items: center; justify-content: center;
+                                             margin-bottom: 14px;
+                                             background-color: rgba(74, 158, 255, 0.12);
+                                             border-top-left-radius: 36px; border-top-right-radius: 36px;
+                                             border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;
+                                             border-width: 1px; border-color: rgba(74, 158, 255, 0.35);
+                                             flex-shrink: 0;">
+                        <ui:Label text="🧩" picking-mode="Ignore"
+                                  style="font-size: 38px; color: #F0F0F5; -unity-text-align: middle-center;" />
+                    </ui:VisualElement>
+                    <ui:Label text="Пазл" class="preset-card__name"
+                              style="font-size: 16px; -unity-font-style: bold; color: #F0F0F5;
+                                     margin-bottom: 8px; -unity-text-align: middle-center;" />
+                    <ui:Label text="Разрежь изображение на N×M кусочков и собери его обратно как можно быстрее." class="preset-card__desc"
+                              style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;
+                                     white-space: normal; -unity-text-align: middle-center;" />
+                    <ui:VisualElement class="preset-card__tags"
+                                      style="flex-direction: row; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+                        <ui:Label text="2D"     style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="Логика" style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="Тач"    style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:Label name="preset-puzzle-req"  text="Нужно: 1 изображение"
+                              style="font-size: 11px; color: #6B7280; margin-bottom: 4px;
+                                     -unity-text-align: middle-center; white-space: normal;" />
+                    <ui:Label name="preset-puzzle-avail" text="" style="font-size: 11px; color: #F87171; -unity-text-align: middle-center; white-space: normal; display: none;" />
+                    <ui:VisualElement style="flex-grow: 1; min-height: 8px;" />
+                    <ui:Button name="preset-puzzle-btn" class="preset-select-btn" text="Выбрать"
+                               style="height: 38px; margin-top: 6px; width: 100%;
+                                      background-color: rgba(0, 0, 0, 0); border-width: 1px; border-color: #4A9EFF;
+                                      border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                      border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                      color: #4A9EFF; font-size: 13px; -unity-font-style: bold;" />
+                </ui:VisualElement>
+
+                <!-- ===== 2. МЕМОРИ ===== -->
+                <ui:VisualElement name="preset-memory" class="preset-card"
+                                  style="flex-direction: column; flex-grow: 1; flex-shrink: 1; flex-basis: 0;
+                                         width: 32%; max-width: 49%; min-width: 240px;
+                                         margin: 6px;
+                                         background-color: #2A2A3D;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         border-width: 2px; border-color: #3F3F5C;
+                                         padding: 24px;
+                                         align-items: center;">
+                    <ui:VisualElement class="preset-card__icon-wrap"
+                                      style="width: 72px; height: 72px;
+                                             align-items: center; justify-content: center;
+                                             margin-bottom: 14px;
+                                             background-color: rgba(74, 158, 255, 0.12);
+                                             border-top-left-radius: 36px; border-top-right-radius: 36px;
+                                             border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;
+                                             border-width: 1px; border-color: rgba(74, 158, 255, 0.35);
+                                             flex-shrink: 0;">
+                        <ui:Label text="🧠" picking-mode="Ignore"
+                                  style="font-size: 38px; color: #F0F0F5; -unity-text-align: middle-center;" />
+                    </ui:VisualElement>
+                    <ui:Label text="Мемори" class="preset-card__name"
+                              style="font-size: 16px; -unity-font-style: bold; color: #F0F0F5;
+                                     margin-bottom: 8px; -unity-text-align: middle-center;" />
+                    <ui:Label text="Переворачивай карточки и находи пары. Идеально для тренировки памяти."
+                              class="preset-card__desc"
+                              style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;
+                                     white-space: normal; -unity-text-align: middle-center;" />
+                    <ui:VisualElement class="preset-card__tags"
+                                      style="flex-direction: row; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+                        <ui:Label text="2D"      style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="Память"  style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="Тач"     style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:Label name="preset-memory-req" text="Нужно: от 4 изображений"
+                              style="font-size: 11px; color: #6B7280; margin-bottom: 4px;
+                                     -unity-text-align: middle-center; white-space: normal;" />
+                    <ui:Label name="preset-memory-avail" text="" style="font-size: 11px; color: #F87171; -unity-text-align: middle-center; white-space: normal; display: none;" />
+                    <ui:VisualElement style="flex-grow: 1; min-height: 8px;" />
+                    <ui:Button name="preset-memory-btn" class="preset-select-btn" text="Выбрать"
+                               style="height: 38px; margin-top: 6px; width: 100%;
+                                      background-color: rgba(0, 0, 0, 0); border-width: 1px; border-color: #4A9EFF;
+                                      border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                      border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                      color: #4A9EFF; font-size: 13px; -unity-font-style: bold;" />
+                </ui:VisualElement>
+
+                <!-- ===== 3. ВИКТОРИНА ===== -->
+                <ui:VisualElement name="preset-quiz" class="preset-card"
+                                  style="flex-direction: column; flex-grow: 1; flex-shrink: 1; flex-basis: 0;
+                                         width: 32%; max-width: 49%; min-width: 240px;
+                                         margin: 6px;
+                                         background-color: #2A2A3D;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         border-width: 2px; border-color: #3F3F5C;
+                                         padding: 24px;
+                                         align-items: center;">
+                    <ui:VisualElement class="preset-card__icon-wrap"
+                                      style="width: 72px; height: 72px;
+                                             align-items: center; justify-content: center;
+                                             margin-bottom: 14px;
+                                             background-color: rgba(74, 158, 255, 0.12);
+                                             border-top-left-radius: 36px; border-top-right-radius: 36px;
+                                             border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;
+                                             border-width: 1px; border-color: rgba(74, 158, 255, 0.35);
+                                             flex-shrink: 0;">
+                        <ui:Label text="❓" picking-mode="Ignore"
+                                  style="font-size: 38px; color: #F0F0F5; -unity-text-align: middle-center;" />
+                    </ui:VisualElement>
+                    <ui:Label text="Викторина" class="preset-card__name"
+                              style="font-size: 16px; -unity-font-style: bold; color: #F0F0F5;
+                                     margin-bottom: 8px; -unity-text-align: middle-center;" />
+                    <ui:Label text="Вопросы из JSON-файла, 4 варианта ответа, таймер и счёт за правильные ответы."
+                              class="preset-card__desc"
+                              style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;
+                                     white-space: normal; -unity-text-align: middle-center;" />
+                    <ui:VisualElement class="preset-card__tags"
+                                      style="flex-direction: row; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+                        <ui:Label text="2D"      style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="Знания"  style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="JSON"    style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:Label name="preset-quiz-req" text="Нужно: 1 JSON-файл"
+                              style="font-size: 11px; color: #6B7280; margin-bottom: 4px;
+                                     -unity-text-align: middle-center; white-space: normal;" />
+                    <ui:Label name="preset-quiz-avail" text="" style="font-size: 11px; color: #F87171; -unity-text-align: middle-center; white-space: normal; display: none;" />
+                    <ui:VisualElement style="flex-grow: 1; min-height: 8px;" />
+                    <ui:Button name="preset-quiz-btn" class="preset-select-btn" text="Выбрать"
+                               style="height: 38px; margin-top: 6px; width: 100%;
+                                      background-color: rgba(0, 0, 0, 0); border-width: 1px; border-color: #4A9EFF;
+                                      border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                      border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                      color: #4A9EFF; font-size: 13px; -unity-font-style: bold;" />
+                </ui:VisualElement>
+
+                <!-- ===== 4. ВИДЕО-УГАДАЙКА ===== -->
+                <ui:VisualElement name="preset-video-quiz" class="preset-card"
+                                  style="flex-direction: column; flex-grow: 1; flex-shrink: 1; flex-basis: 0;
+                                         width: 32%; max-width: 49%; min-width: 240px;
+                                         margin: 6px;
+                                         background-color: #2A2A3D;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         border-width: 2px; border-color: #3F3F5C;
+                                         padding: 24px;
+                                         align-items: center;">
+                    <ui:VisualElement class="preset-card__icon-wrap"
+                                      style="width: 72px; height: 72px;
+                                             align-items: center; justify-content: center;
+                                             margin-bottom: 14px;
+                                             background-color: rgba(74, 158, 255, 0.12);
+                                             border-top-left-radius: 36px; border-top-right-radius: 36px;
+                                             border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;
+                                             border-width: 1px; border-color: rgba(74, 158, 255, 0.35);
+                                             flex-shrink: 0;">
+                        <ui:Label text="🎬" picking-mode="Ignore"
+                                  style="font-size: 38px; color: #F0F0F5; -unity-text-align: middle-center;" />
+                    </ui:VisualElement>
+                    <ui:Label text="Видео-Угадайка" class="preset-card__name"
+                              style="font-size: 16px; -unity-font-style: bold; color: #F0F0F5;
+                                     margin-bottom: 8px; -unity-text-align: middle-center;" />
+                    <ui:Label text="Смотри короткий видеофрагмент и выбери правильный ответ из 4 вариантов."
+                              class="preset-card__desc"
+                              style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;
+                                     white-space: normal; -unity-text-align: middle-center;" />
+                    <ui:VisualElement class="preset-card__tags"
+                                      style="flex-direction: row; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+                        <ui:Label text="2D"      style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="Видео"   style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="Знания"  style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:Label name="preset-video-quiz-req" text="Нужно: от 2 видео + 1 JSON"
+                              style="font-size: 11px; color: #6B7280; margin-bottom: 4px;
+                                     -unity-text-align: middle-center; white-space: normal;" />
+                    <ui:Label name="preset-video-quiz-avail" text="" style="font-size: 11px; color: #F87171; -unity-text-align: middle-center; white-space: normal; display: none;" />
+                    <ui:VisualElement style="flex-grow: 1; min-height: 8px;" />
+                    <ui:Button name="preset-video-quiz-btn" class="preset-select-btn" text="Выбрать"
+                               style="height: 38px; margin-top: 6px; width: 100%;
+                                      background-color: rgba(0, 0, 0, 0); border-width: 1px; border-color: #4A9EFF;
+                                      border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                      border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                      color: #4A9EFF; font-size: 13px; -unity-font-style: bold;" />
+                </ui:VisualElement>
+
+                <!-- ===== 5. 3D ОСМОТР ===== -->
+                <ui:VisualElement name="preset-scene-3d" class="preset-card"
+                                  style="flex-direction: column; flex-grow: 1; flex-shrink: 1; flex-basis: 0;
+                                         width: 32%; max-width: 49%; min-width: 240px;
+                                         margin: 6px;
+                                         background-color: #2A2A3D;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         border-width: 2px; border-color: #3F3F5C;
+                                         padding: 24px;
+                                         align-items: center;">
+                    <ui:VisualElement class="preset-card__icon-wrap"
+                                      style="width: 72px; height: 72px;
+                                             align-items: center; justify-content: center;
+                                             margin-bottom: 14px;
+                                             background-color: rgba(74, 158, 255, 0.12);
+                                             border-top-left-radius: 36px; border-top-right-radius: 36px;
+                                             border-bottom-left-radius: 36px; border-bottom-right-radius: 36px;
+                                             border-width: 1px; border-color: rgba(74, 158, 255, 0.35);
+                                             flex-shrink: 0;">
+                        <ui:Label text="🧊" picking-mode="Ignore"
+                                  style="font-size: 38px; color: #F0F0F5; -unity-text-align: middle-center;" />
+                    </ui:VisualElement>
+                    <ui:Label text="3D Осмотр" class="preset-card__name"
+                              style="font-size: 16px; -unity-font-style: bold; color: #F0F0F5;
+                                     margin-bottom: 8px; -unity-text-align: middle-center;" />
+                    <ui:Label text="Вращай 3D-объект, получай подсказки и угадай что это. Поддержка GLB/GLTF."
+                              class="preset-card__desc"
+                              style="font-size: 12px; color: #9CA3AF; margin-bottom: 12px;
+                                     white-space: normal; -unity-text-align: middle-center;" />
+                    <ui:VisualElement class="preset-card__tags"
+                                      style="flex-direction: row; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+                        <ui:Label text="3D"          style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="Интерактив"  style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                        <ui:Label text="Угадайка"    style="background-color: rgba(74, 158, 255, 0.15); color: #4A9EFF; font-size: 10px; padding: 3px 9px; border-radius: 10px; margin-right: 4px; margin-bottom: 4px; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:Label name="preset-scene-3d-req" text="Нужно: от 1 3D-модели"
+                              style="font-size: 11px; color: #6B7280; margin-bottom: 4px;
+                                     -unity-text-align: middle-center; white-space: normal;" />
+                    <ui:Label name="preset-scene-3d-avail" text="" style="font-size: 11px; color: #F87171; -unity-text-align: middle-center; white-space: normal; display: none;" />
+                    <ui:VisualElement style="flex-grow: 1; min-height: 8px;" />
+                    <ui:Button name="preset-scene-3d-btn" class="preset-select-btn" text="Выбрать"
+                               style="height: 38px; margin-top: 6px; width: 100%;
+                                      background-color: rgba(0, 0, 0, 0); border-width: 1px; border-color: #4A9EFF;
+                                      border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                      border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                      color: #4A9EFF; font-size: 13px; -unity-font-style: bold;" />
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+
+            <!-- Информация о выбранном пресете -->
+            <ui:VisualElement name="selected-preset-info" class="preset-info hidden"
+                              style="margin-top: 16px; display: none;
+                                     background-color: #2A2A3D;
+                                     border-top-left-radius: 8px; border-top-right-radius: 8px;
+                                     border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                                     padding: 12px 16px;">
+                <ui:Label name="selected-preset-name" text="" class="preset-info__title"
+                          style="font-size: 13px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 4px;" />
+                <ui:Label name="selected-preset-slots" text="" class="preset-info__text"
+                          style="font-size: 12px; color: #9CA3AF; white-space: normal;" />
+            </ui:VisualElement>
+
+        </ui:ScrollView>
+
+    </ui:VisualElement>
+
+</ui:UXML>

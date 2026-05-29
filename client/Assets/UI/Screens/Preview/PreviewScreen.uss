@@ -1,0 +1,32 @@
+/* ============================================
+   Preview Screen — fullscreen preset preview
+   ============================================ */
+
+.preview-screen-root {
+    background-color: #1E1E2E;
+}
+
+.preview-metric {
+    font-size: 11px;
+    color: #9CA3AF;
+    -unity-text-align: middle-center;
+    background-color: #1E1E2E;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.preview-stage {
+    /* Размер задаётся динамически из выбранного разрешения */
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}

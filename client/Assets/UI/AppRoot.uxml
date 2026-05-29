@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd">
+
+    <!-- ============================================
+         Root UIDocument of the application.
+         SceneRouter switches visible screen inside
+         #screen-container. Only one is active at a time.
+         Overlays (modal, toast, tooltip) sit above.
+         ============================================ -->
+
+    <Style src="Theme/theme.uss" />
+
+    <ui:VisualElement name="app-root" class="root app-root" picking-mode="Position">
+
+        <!-- Main screen container — SceneRouter injects/activates screens here -->
+        <ui:VisualElement name="screen-container" class="screen-container flex-grow" />
+
+        <!-- Global Toast container (topmost) -->
+        <ui:VisualElement name="toast-host" class="toast-container" picking-mode="Ignore" />
+
+        <!-- Global Modal host -->
+        <ui:VisualElement name="modal-host" class="hidden" picking-mode="Ignore" />
+
+        <!-- Global Tooltip host -->
+        <ui:VisualElement name="tooltip-host" class="hidden" picking-mode="Ignore" />
+
+    </ui:VisualElement>
+
+</ui:UXML>

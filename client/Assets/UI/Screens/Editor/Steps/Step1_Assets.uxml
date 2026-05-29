@@ -1,0 +1,86 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../../Theme/theme.uss" />
+    <Style src="Steps.uss" />
+
+    <ui:VisualElement class="step-root">
+
+        <ui:VisualElement class="step-grid-2col" style="flex-direction: row; flex-grow: 1;">
+
+            <!-- ===== LEFT: Upload zone + formats card ===== -->
+            <ui:VisualElement class="step-grid-2col__col" style="flex-direction: column; flex-grow: 1; flex-basis: 0;">
+                <ui:Label text="Загрузка ассетов" class="step-h2" />
+
+                <!-- Drop-zone — большая dashed-плашка с акцентным фоном на ховере.
+                     Inline-стили дублируют CSS .upload-zone для надёжности. -->
+                <ui:VisualElement name="asset-drop-zone" class="upload-zone"
+                                  style="flex-grow: 1; min-height: 280px; align-items: center; justify-content: center;
+                                         border-width: 2px; border-color: #3F3F5C;
+                                         border-top-left-radius: 12px; border-top-right-radius: 12px;
+                                         border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+                                         background-color: #2A2A3D; padding: 32px; margin-bottom: 16px;">
+                    <ui:Label text="↑" style="font-size: 56px; color: #4A9EFF; -unity-text-align: middle-center; margin-bottom: 12px;" />
+                    <ui:Label text="Перетащите файлы сюда или нажмите для выбора"
+                              class="upload-zone__title"
+                              style="font-size: 14px; -unity-font-style: bold; color: #F0F0F5; -unity-text-align: middle-center; margin-bottom: 8px;" />
+                    <ui:Label text="Изображения, видео, аудио, 3D-модели, тексты"
+                              class="upload-zone__hint"
+                              style="font-size: 12px; color: #9CA3AF; -unity-text-align: middle-center;" />
+                </ui:VisualElement>
+
+                <ui:ScrollView name="upload-progress-list" class="upload-progress-list" style="min-height: 0; max-height: 120px; margin-bottom: 12px;" />
+
+                <ui:VisualElement class="formats-card"
+                                  style="background-color: #2A2A3D;
+                                         border-top-left-radius: 8px; border-top-right-radius: 8px;
+                                         border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                                         border-width: 1px; border-color: #3F3F5C;
+                                         padding: 16px; flex-shrink: 0;">
+                    <ui:Label text="Допустимые форматы:" class="formats-card__title"
+                              style="font-size: 13px; -unity-font-style: bold; color: #F0F0F5; margin-bottom: 8px;" />
+                    <ui:Label text="• Изображения: PNG, JPEG, WebP (до 20 МБ)" class="formats-card__line" style="font-size: 12px; color: #9CA3AF; margin-bottom: 2px;" />
+                    <ui:Label text="• Видео: MP4, WEBM (до 200 МБ)" class="formats-card__line" style="font-size: 12px; color: #9CA3AF; margin-bottom: 2px;" />
+                    <ui:Label text="• Аудио: WAV, MP3, OGG (до 50 МБ)" class="formats-card__line" style="font-size: 12px; color: #9CA3AF; margin-bottom: 2px;" />
+                    <ui:Label text="• 3D: GLB, GLTF, FBX, OBJ (до 100 МБ)" class="formats-card__line" style="font-size: 12px; color: #9CA3AF; margin-bottom: 2px;" />
+                    <ui:Label text="• Текст: TXT, JSON, CSV (до 5 МБ)" class="formats-card__line" style="font-size: 12px; color: #9CA3AF; margin-bottom: 2px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- ===== RIGHT: Library ===== -->
+            <ui:VisualElement class="step-grid-2col__col" style="flex-direction: column; flex-grow: 1; flex-basis: 0; margin-left: 24px;">
+
+                <ui:VisualElement class="library-header" style="flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <ui:Label name="asset-count" text="Библиотека (0)" class="step-h2" style="margin-bottom: 0;" />
+                    <ui:VisualElement name="asset-filters" class="library-filters" style="flex-direction: row; align-items: center;">
+                        <!-- inline-стили дублируют CSS .library-filter-btn чтобы pill-shape был
+                             виден даже если Unity не подхватил Steps.uss из кэша. -->
+                        <ui:Button class="library-filter-btn library-filter-btn--active" text="Все"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: #4A9EFF; border-color: #4A9EFF; color: #FFFFFF; -unity-font-style: bold; font-size: 12px;" />
+                        <ui:Button class="library-filter-btn" text="image"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: rgba(0,0,0,0); border-width: 1px; border-color: #3F3F5C; color: #9CA3AF; -unity-font-style: bold; font-size: 12px;" />
+                        <ui:Button class="library-filter-btn" text="video"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: rgba(0,0,0,0); border-width: 1px; border-color: #3F3F5C; color: #9CA3AF; -unity-font-style: bold; font-size: 12px;" />
+                        <ui:Button class="library-filter-btn" text="audio"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: rgba(0,0,0,0); border-width: 1px; border-color: #3F3F5C; color: #9CA3AF; -unity-font-style: bold; font-size: 12px;" />
+                        <ui:Button class="library-filter-btn" text="3d"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: rgba(0,0,0,0); border-width: 1px; border-color: #3F3F5C; color: #9CA3AF; -unity-font-style: bold; font-size: 12px;" />
+                        <ui:Button class="library-filter-btn" text="text"
+                                   style="flex-shrink: 0; height: 30px; padding-left: 14px; padding-right: 14px; margin-left: 6px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; background-color: rgba(0,0,0,0); border-width: 1px; border-color: #3F3F5C; color: #9CA3AF; -unity-font-style: bold; font-size: 12px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:ScrollView style="flex-grow: 1;">
+                    <ui:VisualElement name="asset-library-grid" class="asset-grid" />
+                </ui:ScrollView>
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

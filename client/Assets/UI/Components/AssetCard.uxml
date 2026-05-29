@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         engine="UnityEngine.UIElements">
+
+    <!-- Reusable Asset Card template (library view, 120x120-ish) -->
+
+    <ui:VisualElement name="asset-card" class="asset-card">
+        <ui:VisualElement name="asset-card__preview" class="asset-card__preview">
+            <ui:Label name="asset-card__type-label" class="asset-card__type-label" text="IMG" />
+        </ui:VisualElement>
+        <ui:Label name="asset-card__name" class="asset-card__name" text="filename.ext" />
+        <ui:Label name="asset-card__size" class="asset-card__size" text="0 KB" />
+        <ui:Button name="asset-card__delete-btn" class="asset-card__delete-btn" text="✕" />
+    </ui:VisualElement>
+
+</ui:UXML>

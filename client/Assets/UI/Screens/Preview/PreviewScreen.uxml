@@ -1,0 +1,70 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../Theme/theme.uss" />
+    <Style src="PreviewScreen.uss" />
+
+    <ui:VisualElement name="preview-screen-root" class="preview-screen-root"
+                      style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+                             flex-direction: column; background-color: #1E1E2E;">
+
+        <!-- ========== TOP BAR ========== -->
+        <ui:VisualElement name="preview-top-bar" class="preview-top-bar"
+                          style="height: 56px; flex-direction: row; align-items: center;
+                                 padding-left: 20px; padding-right: 20px;
+                                 background-color: #2A2A3D;
+                                 border-bottom-width: 1px; border-bottom-color: #3F3F5C;
+                                 flex-shrink: 0;">
+
+            <ui:Button name="preview-exit-btn" class="btn btn-ghost btn-small"
+                       text="←  Выйти из превью" style="margin-right: 16px;" />
+
+            <ui:VisualElement style="flex-direction: column; flex-grow: 1;">
+                <ui:Label name="preview-title" text="Превью механики"
+                          style="font-size: 14px; -unity-font-style: bold; color: #F0F0F5;" />
+                <ui:Label name="preview-subtitle" text="—"
+                          style="font-size: 11px; color: #9CA3AF;" />
+            </ui:VisualElement>
+
+            <!-- Performance metrics -->
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-right: 16px;">
+                <ui:Label name="preview-fps" text="— FPS" class="preview-metric"
+                          style="margin-right: 8px;" />
+                <ui:Label name="preview-memory" text="— MB" class="preview-metric" />
+            </ui:VisualElement>
+
+            <ui:Button name="preview-restart-btn" class="btn btn-ghost btn-small"
+                       text="↻  Перезапустить" style="min-width: 130px; margin-right: 6px;" />
+
+            <ui:Button name="preview-pause-btn" class="btn btn-secondary btn-small"
+                       text="⏸  Пауза" style="min-width: 120px;" />
+        </ui:VisualElement>
+
+        <!-- ========== STAGE ========== -->
+        <ui:VisualElement name="preview-stage-wrap"
+                          style="flex-grow: 1; flex-direction: column;
+                                 align-items: center; justify-content: center;
+                                 background-color: #15151F; overflow: hidden;">
+
+            <!-- Внутри живёт PresetHost: preset-stage / hud-host / result-host -->
+            <ui:VisualElement name="preview-stage" class="preview-stage"
+                              style="position: relative;
+                                     border-width: 1px; border-color: #3F3F5C;
+                                     background-color: #1E1E2E;
+                                     overflow: hidden;" />
+
+            <ui:Label name="preview-resolution-info" text="1280×720"
+                      style="position: absolute; bottom: 12px; right: 16px;
+                             font-size: 11px; color: #6B7280;
+                             background-color: rgba(0,0,0,0.4);
+                             padding-left: 8px; padding-right: 8px; padding-top: 3px; padding-bottom: 3px;
+                             border-top-left-radius: 4px; border-top-right-radius: 4px;
+                             border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;" />
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

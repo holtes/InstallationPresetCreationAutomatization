@@ -1,0 +1,641 @@
+/* ============================================
+   Global Theme — Interactive Installations
+   Ported from Tailwind/React design system.
+   Tokens (literal hex; USS var() unsupported in selector values
+   for some Unity 2022 versions, so we duplicate hex inline).
+
+     bg-primary    #1E1E2E
+     bg-secondary  #2A2A3D
+     bg-tertiary   #363650
+     accent        #4A9EFF
+     accent-hover  #6BB3FF
+     success       #4ADE80
+     warning       #FBBF24
+     danger        #F87171
+     text-primary  #F0F0F5
+     text-secondary#9CA3AF
+     text-muted    #6B7280
+     border        #3F3F5C
+   ============================================ */
+
+@import url("variables.uss");
+
+/* --- Base --- */
+
+.root {
+    background-color: #1E1E2E;
+    color: #F0F0F5;
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+.h1   { font-size: 28px; -unity-font-style: bold;   color: #F0F0F5; }
+.h2   { font-size: 22px; -unity-font-style: bold;   color: #F0F0F5; }
+.h3   { font-size: 18px; -unity-font-style: bold;   color: #F0F0F5; }
+.h4   { font-size: 14px; -unity-font-style: normal; color: #F0F0F5; }
+.body-text { font-size: 14px; color: #F0F0F5; }
+.caption   { font-size: 12px; color: #9CA3AF; }
+
+.text-primary   { color: #F0F0F5; }
+.text-secondary { color: #9CA3AF; }
+.text-muted     { color: #6B7280; }
+.text-accent    { color: #4A9EFF; }
+.text-success   { color: #4ADE80; }
+.text-warning   { color: #FBBF24; }
+.text-danger    { color: #F87171; }
+
+.bg-primary   { background-color: #1E1E2E; }
+.bg-secondary { background-color: #2A2A3D; }
+.bg-tertiary  { background-color: #363650; }
+
+/* ============================================
+   Buttons
+   ============================================ */
+.btn {
+    height: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    -unity-font-style: normal;
+    -unity-text-align: middle-center;
+    border-width: 0;
+    margin: 0;
+    transition-property: background-color, border-color, color;
+    transition-duration: 150ms;
+}
+
+.btn-primary {
+    background-color: #4A9EFF;
+    color: #FFFFFF;
+}
+.btn-primary:hover    { background-color: #6BB3FF; }
+.btn-primary:active   { background-color: #3A8AE6; }
+.btn-primary:disabled { background-color: #363650; color: #6B7280; }
+
+/* Secondary uses accent outline (matches web variant). */
+.btn-secondary {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 1px;
+    border-color: #4A9EFF;
+    color: #4A9EFF;
+}
+.btn-secondary:hover  { background-color: rgba(74, 158, 255, 0.1); }
+.btn-secondary:active { background-color: rgba(74, 158, 255, 0.2); }
+
+.btn-danger {
+    background-color: #F87171;
+    color: #FFFFFF;
+}
+.btn-danger:hover { background-color: #FCA5A5; }
+
+.btn-ghost {
+    background-color: rgba(0, 0, 0, 0);
+    color: #9CA3AF;
+}
+.btn-ghost:hover  { background-color: #363650; color: #F0F0F5; }
+
+.btn-large { height: 48px; font-size: 16px; padding-left: 24px; padding-right: 24px; }
+.btn-small { height: 32px; font-size: 12px; padding-left: 12px; padding-right: 12px; }
+.btn-full-width { width: 100%; }
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 6px;
+    -unity-text-align: middle-center;
+}
+
+/* ============================================
+   Inputs (TextField)
+
+   Design: web .input has bg-tertiary, border, rounded-md,
+   padding 12px x 8px. We style the OUTER TextField as the box
+   and strip the inner input chrome.
+   ============================================ */
+.field {
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    background-color: #363650;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    border-radius: 6px;
+    color: #F0F0F5;
+    font-size: 14px;
+    transition-property: border-color, background-color;
+    transition-duration: 150ms;
+}
+.field:hover { border-color: #6BB3FF; }
+.field:focus { border-color: #4A9EFF; }
+
+.field--error { border-color: #F87171; }
+
+/* Strip Unity's default TextField inner-input chrome. */
+.field > .unity-text-field__input,
+.field > .unity-base-text-field__input,
+.field > TextElement {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    border-width: 0;
+    border-radius: 0;
+    margin: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: #F0F0F5;
+    font-size: 14px;
+    -unity-text-align: middle-left;
+}
+
+/* Field label */
+.field-label {
+    font-size: 13px;
+    color: #F0F0F5;
+    -unity-font-style: normal;
+    margin-bottom: 6px;
+}
+.field-error {
+    font-size: 12px;
+    color: #F87171;
+    margin-top: 4px;
+}
+
+/* ============================================
+   Cards
+   ============================================ */
+.card {
+    background-color: #2A2A3D;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    padding: 16px;
+    transition-property: border-color, translate;
+    transition-duration: 200ms;
+}
+.card:hover { border-color: #4A9EFF; translate: 0 -2px; }
+
+/* ============================================
+   Badges
+   ============================================ */
+.badge {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 4px;
+    font-size: 11px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+.badge-default   { background-color: #363650; color: #9CA3AF; }
+.badge-success   { background-color: rgba(74, 222, 128, 0.2); color: #4ADE80; }
+.badge-warning   { background-color: rgba(251, 191, 36, 0.2); color: #FBBF24; }
+.badge-danger    { background-color: rgba(248, 113, 113, 0.2); color: #F87171; }
+.badge-info      { background-color: rgba(74, 158, 255, 0.2); color: #4A9EFF; }
+
+/* Status badges (project list) */
+.badge-draft     { background-color: #363650; color: #9CA3AF; }
+.badge-ready     { background-color: rgba(74, 222, 128, 0.2); color: #4ADE80; }
+.badge-published { background-color: rgba(74, 158, 255, 0.2); color: #4A9EFF; }
+
+/* ============================================
+   Modal
+   ============================================ */
+
+/* #modal-host растягивается на весь UIDocument, чтобы оверлей
+   с position:absolute мог заполнить экран. Когда модалок нет —
+   class="hidden" в UXML делает display:none. */
+#modal-host {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal-overlay {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+}
+.modal {
+    background-color: #2A2A3D;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    min-width: 480px;
+    max-width: 640px;
+}
+.modal-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom-width: 1px;
+    border-bottom-color: #3F3F5C;
+}
+.modal-title { font-size: 18px; -unity-font-style: bold; color: #F0F0F5; }
+.modal-close-btn {
+    width: 32px; height: 32px;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    border-radius: 4px;
+    color: #6B7280;
+    font-size: 18px;
+    -unity-text-align: middle-center;
+    padding: 0;
+}
+.modal-close-btn:hover { background-color: #363650; color: #F0F0F5; }
+.modal-body { padding: 16px 24px; }
+.modal-footer {
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 16px 24px;
+    border-top-width: 1px;
+    border-top-color: #3F3F5C;
+}
+.modal-footer > Button { margin-left: 12px; }
+
+/* Поля внутри модалок (TextField/DropdownField).
+   КЛЮЧЕВОЕ: TextField — это композит row{label, input}. Делаем layout column,
+   чтобы лейбл встал НАД полем и не отжимал инпут шириной 100%. */
+.modal-text-input {
+    flex-direction: column;
+    margin-bottom: 12px;
+    margin-left: 0;
+    margin-right: 0;
+}
+.modal-text-input > .unity-base-field__label,
+.modal-text-input > .unity-text-field__label {
+    font-size: 13px;
+    color: #9CA3AF;
+    -unity-font-style: normal;
+    margin: 0;
+    margin-bottom: 6px;
+    padding: 0;
+    min-width: 0;
+    -unity-text-align: middle-left;
+}
+.modal-text-input .unity-base-text-field__input,
+.modal-text-input .unity-text-field__input {
+    flex-grow: 1;
+    min-height: 36px;
+    background-color: #363650;
+    background-image: none;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    border-radius: 6px;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: #F0F0F5;
+    font-size: 14px;
+    -unity-text-align: middle-left;
+}
+.modal-text-input .unity-base-text-field__input:focus,
+.modal-text-input .unity-text-field__input:focus {
+    border-color: #4A9EFF;
+}
+/* DropdownField внутренний popup-button */
+.modal-text-input > .unity-popup-field__input {
+    flex-grow: 1;
+    min-height: 36px;
+    background-color: #363650;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    border-radius: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #F0F0F5;
+    font-size: 14px;
+}
+
+/* ============================================
+   Toast
+   ============================================ */
+.toast-container {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 360px;
+}
+.toast {
+    background-color: #2A2A3D;
+    border-radius: 8px;
+    border-width: 1px;
+    border-left-width: 4px;
+    border-color: #3F3F5C;
+    padding: 12px;
+    margin-bottom: 8px;
+    flex-direction: row;
+    align-items: center;
+}
+.toast-success { border-left-color: #4ADE80; }
+.toast-error   { border-left-color: #F87171; }
+.toast-warning { border-left-color: #FBBF24; }
+.toast-info    { border-left-color: #4A9EFF; }
+.toast-message { flex-grow: 1; font-size: 13px; color: #F0F0F5; margin-left: 8px; }
+
+/* ============================================
+   Stepper (Editor wizard)
+   ============================================ */
+.stepper {
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 24px;
+    background-color: #2A2A3D;
+    border-bottom-width: 1px;
+    border-bottom-color: #3F3F5C;
+}
+.stepper__step {
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+}
+.stepper__circle {
+    width: 40px; height: 40px;
+    border-radius: 20px;
+    background-color: #363650;
+    color: #6B7280;
+    -unity-text-align: middle-center;
+    font-size: 14px;
+    -unity-font-style: bold;
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+    transition-property: background-color, color;
+    transition-duration: 200ms;
+}
+.stepper__circle--active    { background-color: #4A9EFF; color: #FFFFFF; }
+.stepper__circle--completed { background-color: #4ADE80; color: #FFFFFF; }
+
+.stepper__label {
+    font-size: 14px;
+    color: #6B7280;
+    -unity-font-style: normal;
+    margin-left: 12px;
+    transition-property: color;
+    transition-duration: 200ms;
+}
+.stepper__label--active    { color: #4A9EFF; -unity-font-style: bold; }
+.stepper__label--completed { color: #4ADE80; }
+
+.stepper__connector {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #363650;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+.stepper__connector--completed { background-color: #4ADE80; }
+
+/* ============================================
+   Search Input
+   ============================================ */
+.search-input {
+    flex-direction: row;
+    align-items: center;
+    background-color: #363650;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    border-radius: 6px;
+    height: 36px;
+    padding-left: 12px;
+    padding-right: 8px;
+}
+.search-input:focus { border-color: #4A9EFF; }
+
+.search-input__icon {
+    font-size: 14px;
+    color: #6B7280;
+    margin-right: 8px;
+    -unity-text-align: middle-center;
+}
+.search-input__field {
+    flex-grow: 1;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+}
+.search-input__field > .unity-text-field__input,
+.search-input__field > .unity-base-text-field__input,
+.search-input__field > TextElement {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+    color: #F0F0F5;
+    font-size: 13px;
+    -unity-text-align: middle-left;
+}
+
+/* ============================================
+   Sidebar nav item
+   ============================================ */
+.sidebar__item {
+    height: 36px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #9CA3AF;
+    font-size: 14px;
+    -unity-text-align: middle-left;
+    border-width: 0;
+    margin-bottom: 2px;
+    transition-property: background-color, color;
+    transition-duration: 150ms;
+}
+.sidebar__item:hover {
+    background-color: #363650;
+    color: #F0F0F5;
+}
+.sidebar__item--active {
+    background-color: rgba(74, 158, 255, 0.1);
+    color: #4A9EFF;
+}
+
+.sidebar__divider {
+    height: 1px;
+    background-color: #3F3F5C;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+/* ============================================
+   Progress bar
+   ============================================ */
+.progress-bar {
+    height: 6px;
+    background-color: #363650;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.progress-bar__fill {
+    height: 100%;
+    background-color: #4A9EFF;
+    border-radius: 3px;
+    transition-property: width;
+    transition-duration: 300ms;
+}
+
+/* ============================================
+   Tooltip / Popup host
+   ============================================ */
+#tooltip-host {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.tooltip {
+    position: absolute;
+    background-color: #1E1E2E;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 12px;
+    color: #F0F0F5;
+    max-width: 240px;
+}
+
+/* Popup menu (выпадашки/контекстные меню) */
+.popup-dismiss {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+.popup-menu {
+    position: absolute;
+    min-width: 180px;
+    background-color: #2A2A3D;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    border-radius: 6px;
+    padding: 4px;
+}
+.popup-menu__item {
+    height: 32px;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    border-radius: 4px;
+    color: #F0F0F5;
+    font-size: 13px;
+    -unity-text-align: middle-left;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition-property: background-color, color;
+    transition-duration: 120ms;
+}
+.popup-menu__item:hover {
+    background-color: #363650;
+}
+.popup-menu__item--danger { color: #F87171; }
+.popup-menu__item--danger:hover { background-color: rgba(248, 113, 113, 0.1); }
+.popup-menu__separator {
+    height: 1px;
+    background-color: #3F3F5C;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+/* ============================================
+   Spinner
+   ============================================ */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.3);
+    border-top-color: #FFFFFF;
+    border-radius: 9px;
+    rotate: 0deg;
+    transition-property: rotate;
+    transition-duration: 600ms;
+}
+
+/* ============================================
+   Layout Utilities
+   ============================================ */
+.row { flex-direction: row; }
+.col { flex-direction: column; }
+.flex-grow { flex-grow: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: flex-end; }
+
+.hidden { display: none; }
+
+/* Margins / paddings (8px grid). */
+.m-0 { margin: 0; }
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mb-1 { margin-bottom: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+.mb-8 { margin-bottom: 32px; }
+
+.p-2 { padding: 8px; }
+.p-3 { padding: 12px; }
+.p-4 { padding: 16px; }
+.p-6 { padding: 24px; }
+.p-8 { padding: 32px; }
+
+/* ============================================
+   Scrollbar styling
+   ============================================ */
+.unity-scroller--vertical > .unity-scroller__low-button,
+.unity-scroller--vertical > .unity-scroller__high-button {
+    display: none;
+}
+.unity-scroller--vertical > .unity-slider > .unity-base-slider__tracker {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    width: 6px;
+}
+.unity-scroller--vertical > .unity-slider > .unity-base-slider__drag-container > .unity-base-slider__dragger {
+    background-color: #3F3F5C;
+    border-radius: 3px;
+    width: 6px;
+    left: 0;
+    border-width: 0;
+}
+
+/* ============================================
+   Global Icons (lucide-react set)
+   Положи PNG 24×24 (белые на прозрачном) в Assets/Resources/Icons/<name>.png.
+   Источник: https://lucide.dev/icons/
+   ============================================ */
+.icon-eye         { background-image: resource("Icons/eye"); }
+.icon-eye-off     { background-image: resource("Icons/eye-off"); }

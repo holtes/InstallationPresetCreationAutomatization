@@ -1,0 +1,81 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../../Theme/theme.uss" />
+    <Style src="Steps.uss" />
+
+    <!-- Все ключевые стили inline — на случай если Unity не подхватит USS из кэша. -->
+
+    <ui:VisualElement name="step-preview" class="step-root"
+                      style="flex-direction: column; align-items: center; justify-content: center;
+                             flex-grow: 1; padding: 24px; background-color: #1E1E2E;">
+
+        <ui:VisualElement class="preview-launch-card"
+                          style="flex-direction: column; align-items: center; justify-content: center;
+                                 width: 480px; max-width: 100%; padding: 36px 32px 28px 32px;
+                                 background-color: #2A2A3D;
+                                 border-top-left-radius: 14px; border-top-right-radius: 14px;
+                                 border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;
+                                 border-width: 1px; border-color: #3F3F5C;">
+
+            <!-- Большая иконка-эмодзи в круге (как на карточках пресетов) -->
+            <ui:VisualElement style="width: 96px; height: 96px;
+                                     align-items: center; justify-content: center;
+                                     margin-bottom: 22px;
+                                     background-color: rgba(74, 158, 255, 0.12);
+                                     border-top-left-radius: 48px; border-top-right-radius: 48px;
+                                     border-bottom-left-radius: 48px; border-bottom-right-radius: 48px;
+                                     border-width: 1px; border-color: rgba(74, 158, 255, 0.35);">
+                <ui:Label text="🎮" picking-mode="Ignore"
+                          style="font-size: 52px; color: #F0F0F5; -unity-text-align: middle-center;" />
+            </ui:VisualElement>
+
+            <ui:Label text="Превью механики"
+                      style="font-size: 22px; -unity-font-style: bold; color: #F0F0F5;
+                             -unity-text-align: middle-center; margin-bottom: 6px;" />
+            <ui:Label name="preview-preset-name" text="Пресет: —"
+                      style="font-size: 13px; color: #9CA3AF;
+                             -unity-text-align: middle-center; margin-bottom: 26px;" />
+
+            <!-- Resolution selector -->
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 26px;">
+                <ui:Label text="Разрешение:"
+                          style="margin-right: 10px; color: #9CA3AF; font-size: 13px;" />
+                <!-- Inline-стиль на DropdownField задаёт фон/рамку/скругление, чтобы не торчала
+                     дефолтная Unity-серая «жвачка». -->
+                <ui:DropdownField name="preview-resolution"
+                                  choices="1920×1080,1280×720,1024×768,800×600"
+                                  value="1280×720"
+                                  style="min-width: 200px; height: 34px;
+                                         background-color: #1E1E2E;
+                                         border-width: 1px; border-color: #3F3F5C;
+                                         border-top-left-radius: 6px; border-top-right-radius: 6px;
+                                         border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+                                         color: #F0F0F5; font-size: 13px;
+                                         margin-top: 0; margin-bottom: 0;" />
+            </ui:VisualElement>
+
+            <!-- Launch button (primary accent) -->
+            <ui:Button name="preview-launch-btn"
+                       text="▶  Посмотреть превью"
+                       style="min-width: 280px; height: 48px;
+                              background-color: #4A9EFF;
+                              border-width: 0;
+                              border-top-left-radius: 8px; border-top-right-radius: 8px;
+                              border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+                              color: #FFFFFF; font-size: 15px; -unity-font-style: bold;
+                              padding-left: 24px; padding-right: 24px;
+                              margin: 0;" />
+
+            <ui:Label text="Откроется полноэкранное окно с механикой и метриками."
+                      style="margin-top: 18px; -unity-text-align: middle-center;
+                             white-space: normal; max-width: 400px;
+                             font-size: 12px; color: #6B7280;" />
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+
+</ui:UXML>

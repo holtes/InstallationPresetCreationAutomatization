@@ -1,0 +1,17 @@
+{
+    "version": "1.0",
+    "mechanic": {
+        "type": "puzzle",
+        "name": "Пазл"
+    },
+    "assets": {
+        "puzzle_image": {
+            "filename": "puzzle_image.png",
+            "content_type": "image/png"
+        }
+    },
+    "parameters": {
+        "cols": 3,
+        "rows": 3
+    }
+}

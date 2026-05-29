@@ -1,0 +1,120 @@
+/* Settings screen */
+
+.settings-root {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    flex-direction: column;
+    background-color: #1E1E2E;
+}
+
+/* Top bar */
+.settings-topbar {
+    height: 56px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: #2A2A3D;
+    border-bottom-width: 1px;
+    border-bottom-color: #3F3F5C;
+    flex-shrink: 0;
+}
+.settings-back-btn {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    color: #9CA3AF;
+    font-size: 13px;
+    height: 36px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
+    margin-right: 16px;
+}
+.settings-back-btn:hover { background-color: #363650; color: #F0F0F5; }
+
+.settings-title {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: #F0F0F5;
+}
+
+/* Body */
+.settings-scroll {
+    flex-grow: 1;
+}
+.settings-scroll .unity-scroll-view__content-container {
+    flex-grow: 1;
+    align-items: center;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+.settings-content {
+    width: 720px;
+    max-width: 100%;
+}
+
+/* Section */
+.settings-section {
+    margin-bottom: 24px;
+}
+.settings-section-title {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: #F0F0F5;
+    margin-bottom: 4px;
+}
+.settings-section-desc {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: 12px;
+}
+.settings-card {
+    background-color: #2A2A3D;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: #3F3F5C;
+    padding: 20px;
+}
+
+.settings-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+.settings-actions > Button {
+    margin-left: 12px;
+}
+
+/* Stub */
+.settings-stub {
+    font-size: 13px;
+    color: #6B7280;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+/* Info rows */
+.settings-info-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: #3F3F5C;
+}
+.settings-info-row:last-child { border-bottom-width: 0; }
+.settings-info-label {
+    font-size: 13px;
+    color: #9CA3AF;
+}
+.settings-info-value {
+    font-size: 13px;
+    color: #F0F0F5;
+}
+
+/* Read-only поля — чуть приглушённый input */
+.modal-text-input.unity-text-field--readonly .unity-text-field__input {
+    color: #9CA3AF;
+    background-color: #1E1E2E;
+}

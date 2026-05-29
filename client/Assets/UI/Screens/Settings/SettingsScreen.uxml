@@ -1,0 +1,89 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance"
+         engine="UnityEngine.UIElements"
+         noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd">
+
+    <Style src="../../Theme/theme.uss" />
+    <Style src="SettingsScreen.uss" />
+
+    <ui:VisualElement name="settings-root" class="settings-root">
+
+        <!-- Top bar -->
+        <ui:VisualElement class="settings-topbar">
+            <ui:Button name="back-btn" class="settings-back-btn" text="←  Назад" />
+            <ui:Label text="Настройки" class="settings-title" />
+        </ui:VisualElement>
+
+        <ui:ScrollView class="settings-scroll" mode="Vertical">
+            <ui:VisualElement class="settings-content">
+
+                <!-- Профиль -->
+                <ui:VisualElement class="settings-section">
+                    <ui:Label text="Профиль" class="settings-section-title" />
+                    <ui:Label text="Информация о вашем аккаунте" class="settings-section-desc" />
+
+                    <ui:VisualElement class="settings-card">
+                        <ui:TextField name="display-name-field" label="Имя" class="modal-text-input" />
+                        <ui:TextField name="email-field" label="Email" class="modal-text-input" readonly="true" />
+                        <ui:TextField name="role-field" label="Роль" class="modal-text-input" readonly="true" />
+
+                        <ui:VisualElement class="settings-actions">
+                            <ui:Button name="save-profile-btn" class="btn btn-primary" text="Сохранить профиль" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- Безопасность -->
+                <ui:VisualElement class="settings-section">
+                    <ui:Label text="Безопасность" class="settings-section-title" />
+                    <ui:Label text="Смена пароля" class="settings-section-desc" />
+
+                    <ui:VisualElement class="settings-card">
+                        <ui:Label text="Смена пароля будет доступна в следующей версии — сервер пока не поддерживает соответствующий эндпоинт."
+                                  class="settings-stub" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- Подключение -->
+                <ui:VisualElement class="settings-section">
+                    <ui:Label text="Подключение" class="settings-section-title" />
+                    <ui:Label text="Адрес API-сервера. Изменение применится после перезапуска приложения."
+                              class="settings-section-desc" />
+
+                    <ui:VisualElement class="settings-card">
+                        <ui:TextField name="api-url-field" label="API Base URL" class="modal-text-input" />
+
+                        <ui:VisualElement class="settings-actions">
+                            <ui:Button name="reset-api-btn" class="btn btn-ghost" text="Сбросить" />
+                            <ui:Button name="save-api-btn" class="btn btn-primary" text="Сохранить" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- О приложении -->
+                <ui:VisualElement class="settings-section">
+                    <ui:Label text="О приложении" class="settings-section-title" />
+
+                    <ui:VisualElement class="settings-card">
+                        <ui:VisualElement class="settings-info-row">
+                            <ui:Label text="Версия клиента" class="settings-info-label" />
+                            <ui:Label name="client-version" text="0.1.0-dev" class="settings-info-value" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="settings-info-row">
+                            <ui:Label text="Текущий API" class="settings-info-label" />
+                            <ui:Label name="current-api" text="—" class="settings-info-value" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="settings-info-row">
+                            <ui:Label text="Unity" class="settings-info-label" />
+                            <ui:Label name="unity-version" text="—" class="settings-info-value" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+        </ui:ScrollView>
+
+    </ui:VisualElement>
+
+</ui:UXML>

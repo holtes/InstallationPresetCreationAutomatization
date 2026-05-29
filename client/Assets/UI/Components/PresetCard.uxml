@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements"
+         engine="UnityEngine.UIElements">
+
+    <!-- Reusable Preset Card template.
+         Populated by PresetRegistry from C# for each available preset -->
+
+    <ui:VisualElement name="preset-card" class="preset-card">
+        <ui:VisualElement class="preset-card__preview">
+            <ui:Label name="preset-card__icon" class="preset-card__icon" text="❓" />
+        </ui:VisualElement>
+        <ui:VisualElement class="preset-card__body">
+            <ui:Label name="preset-card__title" class="preset-card__title" text="Название" />
+            <ui:Label name="preset-card__desc" class="preset-card__desc" text="Описание" />
+            <ui:VisualElement name="preset-card__tags" class="preset-card__tags" />
+        </ui:VisualElement>
+        <ui:VisualElement class="preset-card__footer">
+            <ui:Label name="preset-card__slots" class="caption text-muted" text="" />
+            <ui:Button name="preset-card__select-btn" class="btn btn-secondary btn-small preset-select-btn" text="Выбрать" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+
+</ui:UXML>
